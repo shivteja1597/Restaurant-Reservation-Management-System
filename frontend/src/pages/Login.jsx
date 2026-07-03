@@ -44,6 +44,13 @@ const Login = () => {
         setErrorMsg('Please enter a phone number');
         return;
       }
+      
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        setErrorMsg('Phone number must be exactly 10 digits');
+        return;
+      }
+      
       res = await register(name, email, phone, password);
     } else {
       res = await login(email, password);

@@ -37,6 +37,15 @@ const Dashboard = ({ isAdmin }) => {
 
   const handleProfileUpdate = async (e) => {
     e.preventDefault();
+    
+    if (phone) {
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        setMsg('Phone number must be exactly 10 digits');
+        return;
+      }
+    }
+
     const data = { name, email, phone, password: password || undefined };
     const res = await updateProfile(data);
     if (res.success) {
