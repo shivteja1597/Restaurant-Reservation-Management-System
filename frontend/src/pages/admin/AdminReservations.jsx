@@ -164,7 +164,7 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
                     className="modern-input"
                     value={selectedReservation.status}
                     onChange={(e) => setSelectedReservation({ ...selectedReservation, status: e.target.value })}
-                    disabled={selectedReservation.status === 'cancelled'}
+                    disabled={reservations.find(r => r._id === selectedReservation._id)?.status === 'cancelled'}
                   >
                     <option value="booked">Booked</option>
                     <option value="cancelled">Cancelled</option>
@@ -191,10 +191,10 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-light)' }}>
-                {selectedReservation.status !== 'cancelled' && (
+                {reservations.find(r => r._id === selectedReservation._id)?.status !== 'cancelled' && (
                   <button type="submit" className="btn-primary" style={{ flex: 1 }}>Save Changes</button>
                 )}
-                {selectedReservation.status !== 'cancelled' && (
+                {reservations.find(r => r._id === selectedReservation._id)?.status !== 'cancelled' && (
                   <button
                     type="button"
                     className="btn-danger"
