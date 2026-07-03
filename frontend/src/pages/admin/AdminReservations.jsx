@@ -87,7 +87,9 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
                   </span>
                 </td>
                 <td style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button className="btn-primary" style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem' }} onClick={() => handleEditClick(res)}>View / Edit</button>
+                  <button className="btn-primary" style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem' }} onClick={() => handleEditClick(res)}>
+                    {res.status === 'cancelled' ? 'View Details' : 'View / Edit'}
+                  </button>
                   {res.status === 'booked' && (
                     <button className="btn-danger" style={{ padding: '0.4rem 0.75rem', fontSize: '0.75rem' }} onClick={() => handleCancelReservation(res._id)}>Cancel</button>
                   )}
@@ -162,6 +164,7 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
                     className="modern-input"
                     value={selectedReservation.status}
                     onChange={(e) => setSelectedReservation({ ...selectedReservation, status: e.target.value })}
+                    disabled={selectedReservation.status === 'cancelled'}
                   >
                     <option value="booked">Booked</option>
                     <option value="cancelled">Cancelled</option>
@@ -188,18 +191,22 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-light)' }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Save Changes</button>
-                <button
-                  type="button"
-                  className="btn-danger"
-                  onClick={() => {
-                    handleCancelReservation(selectedReservation._id);
-                    setSelectedReservation(null);
-                  }}
-                  style={{ flex: 1, border: selectedReservation.status === 'cancelled' ? '1px solid var(--danger)' : '1px solid var(--text-secondary)', color: selectedReservation.status === 'cancelled' ? 'var(--danger)' : 'var(--text-secondary)' }}
-                >
-                  {selectedReservation.status === 'cancelled' ? 'Delete Reservation' : 'Cancel Reservation'}
-                </button>
+                {selectedReservation.status !== 'cancelled' && (
+                  <button type="submit" className="btn-primary" style={{ flex: 1 }}>Save Changes</button>
+                )}
+                {selectedReservation.status !== 'cancelled' && (
+                  <button
+                    type="button"
+                    className="btn-danger"
+                    onClick={() => {
+                      handleCancelReservation(selectedReservation._id);
+                      setSelectedReservation(null);
+                    }}
+                    style={{ flex: 1 }}
+                  >
+                    Cancel Reservation
+                  </button>
+                )}
                 <button type="button" className="btn-danger" style={{ border: '1px solid var(--border-light)', color: 'var(--text-primary)' }} onClick={() => setSelectedReservation(null)}>Close</button>
               </div>
             </form>

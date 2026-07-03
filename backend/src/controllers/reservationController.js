@@ -152,6 +152,10 @@ const updateReservation = async (req, res) => {
       return res.status(404).json({ message: 'Reservation not found' });
     }
 
+    if (reservation.status === 'cancelled') {
+      return res.status(400).json({ message: 'Cannot modify a cancelled reservation' });
+    }
+
     reservation.tableId = tableId || reservation.tableId;
     reservation.date = date ? new Date(date) : reservation.date;
     reservation.timeSlot = timeSlot || reservation.timeSlot;
