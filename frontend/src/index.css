@@ -129,6 +129,11 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
 }
 
+.modern-input option {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+}
+
 .modern-input::placeholder {
   color: var(--text-secondary);
 }
