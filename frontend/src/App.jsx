@@ -10,7 +10,11 @@ const ProtectedRoute = ({ children, roleRequired }) => {
 
   if (loading) return <div>Loading...</div>;
   if (!user) return <Navigate to="/" />;
-  if (roleRequired && user.role !== roleRequired) return <Navigate to="/dashboard" />;
+  
+  if (roleRequired && user.role !== roleRequired) {
+    if (user.role === 'admin') return <Navigate to="/admin" />;
+    return <Navigate to="/dashboard" />;
+  }
 
   return children;
 };
@@ -25,7 +29,7 @@ const AppRoutes = () => {
         <Route 
           path="/dashboard" 
           element={
-            <ProtectedRoute>
+            <ProtectedRoute roleRequired="customer">
               <Dashboard />
             </ProtectedRoute>
           } 
