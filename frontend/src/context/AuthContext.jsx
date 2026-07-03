@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check if user is logged in on mount
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = sessionStorage.getItem('userInfo');
     if (userInfo) {
       setUser(JSON.parse(userInfo));
     }
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       // Note: Assuming proxy is setup in vite.config.js or we use full URL
       const { data } = await axios.post(`${API_URL}/api/auth/login`, { email, password }, config);
       setUser(data);
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      sessionStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };
     } catch (error) {
       return {
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
       const config = { headers: { 'Content-Type': 'application/json' } };
       const { data } = await axios.post(`${API_URL}/api/auth/register`, { name, email, phone, password }, config);
       setUser(data);
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      sessionStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };
     } catch (error) {
       return {
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
       };
       const { data } = await axios.put(`${API_URL}/api/auth/profile`, userData, config);
       setUser(data);
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      sessionStorage.setItem('userInfo', JSON.stringify(data));
       return { success: true };
     } catch (error) {
       return {
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('userInfo');
+    sessionStorage.removeItem('userInfo');
     setUser(null);
   };
 
