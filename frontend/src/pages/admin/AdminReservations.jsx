@@ -133,6 +133,10 @@ const AdminReservations = ({ reservations, tables, handleCancelReservation, hand
                     value={selectedReservation.timeSlot}
                     onChange={(e) => setSelectedReservation({ ...selectedReservation, timeSlot: e.target.value })}
                   >
+                    <option value="12:00 - 13:30">12:00 - 13:30</option>
+                    <option value="13:30 - 15:00">13:30 - 15:00</option>
+                    <option value="15:00 - 16:30">15:00 - 16:30</option>
+                    <option value="16:30 - 18:00">16:30 - 18:00</option>
                     <option value="18:00 - 19:30">18:00 - 19:30</option>
                     <option value="19:30 - 21:00">19:30 - 21:00</option>
                     <option value="21:00 - 22:30">21:00 - 22:30</option>

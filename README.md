@@ -49,7 +49,7 @@ Standard JWT flow. When you log in, you get a token that has your user ID and ro
 
 - This is built for one restaurant, not multiple locations
 - Each table has a fixed capacity and can be set to active or inactive
-- Time slots are hardcoded (18:00-19:30, 19:30-21:00, 21:00-22:30)
+- Time slots are hardcoded (12:00-13:30, 13:30-15:00, 15:00-16:30, 16:30-18:00, 18:00-19:30, 19:30-21:00, 21:00-22:30)
 - The system picks the table for you, customers don't choose one manually
 
 ## Known issues / things I'd improve

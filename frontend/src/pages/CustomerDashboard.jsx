@@ -11,9 +11,15 @@ const CustomerDashboard = () => {
   const [timeSlot, setTimeSlot] = useState('');
   const [guests, setGuests] = useState(1);
   const [errorMsg, setErrorMsg] = useState('');
-
-  const availableSlots = ["18:00 - 19:30", "19:30 - 21:00", "21:00 - 22:30"];
-
+  const availableSlots = [
+    "12:00 - 13:30", 
+    "13:30 - 15:00", 
+    "15:00 - 16:30", 
+    "16:30 - 18:00", 
+    "18:00 - 19:30", 
+    "19:30 - 21:00", 
+    "21:00 - 22:30"
+  ];
   useEffect(() => {
     fetchReservations();
   }, []);
