@@ -76,6 +76,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     sessionStorage.removeItem('userInfo');
+    sessionStorage.removeItem('adminActiveTab');
     setUser(null);
   };
 

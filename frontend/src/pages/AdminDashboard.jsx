@@ -12,10 +12,10 @@ const AdminDashboard = () => {
   const [tables, setTables] = useState([]);
   
   // Navigation State
-  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('adminActiveTab') || 'dashboard');
+  const [activeTab, setActiveTab] = useState(() => sessionStorage.getItem('adminActiveTab') || 'dashboard');
 
   useEffect(() => {
-    localStorage.setItem('adminActiveTab', activeTab);
+    sessionStorage.setItem('adminActiveTab', activeTab);
   }, [activeTab]);
 
   useEffect(() => {
