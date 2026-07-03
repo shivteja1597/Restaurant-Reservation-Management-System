@@ -72,4 +72,13 @@ mongoose
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
+  
+  // Keep-alive ping to prevent Render from sleeping
+  setInterval(() => {
+    const url = process.env.BACKEND_URL || `http://localhost:${PORT}`;
+    fetch(`${url}/api/health`)
+      .then(res => res.json())
+      .then(data => console.log('Keep-alive ping successful:', data))
+      .catch(err => console.error('Keep-alive ping failed:', err));
+  }, 14 * 60 * 1000); // 14 minutes
 });
