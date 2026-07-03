@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
+  color-scheme: dark;
   /* Color Palette - Modern Restaurant Theme */
   --bg-dark: #1f1b1a;
   --bg-darker: #110e0d;
