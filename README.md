@@ -35,7 +35,20 @@ npm run dev
 
 App should be running at http://localhost:5173.
 
-To create the admin account, run `node seedAdmin.js` from the backend folder. It sets up admin@restaurant.com with password admin123. You can edit the script if you want different credentials.
+To set up the initial test accounts in your database, run `node seedAdmin.js` from the backend folder. This sets up the Admin account. 
+
+### Demo Credentials for Reviewers
+
+If you are a reviewer, you can use the following credentials to test the application:
+
+**Admin Account:**
+- **Email:** admin@restaurant.com
+- **Password:** admin123
+
+**Customer Account:**
+- **Email:** customer@test.com
+- **Password:** customer123 
+*(Note to developer: Make sure to register this customer account on your live deployment so the reviewer can use it!)*
 
 ## How the booking works
 
